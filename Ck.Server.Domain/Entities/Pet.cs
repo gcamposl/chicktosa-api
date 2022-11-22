@@ -12,6 +12,7 @@ namespace Ck.Server.Domain.Entities
     public string Name { get; private set; }
     public string Race { get; private set; }
     public decimal Weight { get; private set; }
+    public ICollection<Plan> Plan { get; set; }
 
     public Pet(string name, string race, float weight)
     {

@@ -13,6 +13,7 @@ namespace Ck.Server.Domain.Entities
     public string Name { get; private set; }
     public string Document { get; private set; }
     public string Phone { get; private set; }
+    public ICollection<Plan> Plan { get; set; }
 
     public Person(string name, string document, string phone)
     {
@@ -28,8 +29,8 @@ namespace Ck.Server.Domain.Entities
     private void Validation(string name, string document, string phone)
     {
       DomainValidationException.When(string.IsNullOrEmpty(name), "Informe o nome!");
-      DomainValidationException.When(strin.IsNullOrEmpty(document), "Informe o documento!");
-      DomainValidationException.When(strin.IsNullOrEmpty(phone), "Informe o telefone!");
+      DomainValidationException.When(string.IsNullOrEmpty(document), "Informe o documento!");
+      DomainValidationException.When(string.IsNullOrEmpty(phone), "Informe o telefone!");
 
       Name = name;
       Document = document;
