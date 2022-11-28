@@ -2,6 +2,41 @@
 
 # services:
 
+#   postgres:
+#     restart: always
+#     image: postgres:14.2-alpine
+#     container_name: postgres
+#     volumes:
+#       - /data/postgresql:/var/lib/postgresql
+#       - /data/postgresql/data:/var/lib/postgresql/data/ # gambiarraaaa
+#     ports:
+#       - "5432:5432"
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: example
+
+
+
+
+version: "3.1"
+
+services:
+
+  db:
+    image: postgres:14.2-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+volumes:
+  pgdata:
+# version: "3.1"
+
+# services:
+
 #   db:
 #     image: postgres:14.2-alpine
 #     restart: always
@@ -10,38 +45,38 @@
 #     ports:
 #       - "5432:5432"
 
-version: "3.7"
-services:
-  database: # service database
-    image: postgres:14.2-alpine
-    container_name: ck_database
-    restart: always
-    ports: 
-      - 5432:5432
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=example
-      - POSTGRES_DB=chicktosa
-    volumes:
-      - pgdata:/data/postgres
+# version: "3.7"
+# services:
+#   database: # service database
+#     image: postgres:14.2-alpine
+#     container_name: ck_database
+#     restart: always
+#     ports: 
+#       - 5432:5432
+#     environment:
+#       - POSTGRES_USER=postgres
+#       - POSTGRES_PASSWORD=example
+#       - POSTGRES_DB=chicktosa
+#     volumes:
+#       - pgdata:/data/postgres
 
-  app: # service api
-    build: .
-    container_name: ck_server
-    restart: always
-    ports:
-      - 3333:3333
-      - 9229:9229 # port para debug
-    volumes:
-    - .:/usr/app
-    links:
-      - database
-    depends_on:
-      - database
+#   app: # service api
+#     build: .
+#     container_name: ck_server
+#     restart: always
+#     ports:
+#       - 3333:3333
+#       - 9229:9229 # port para debug
+#     volumes:
+#     - .:/usr/app
+#     links:
+#       - database
+#     depends_on:
+#       - database
     
-volumes:
-  pgdata:
-    driver: local
+# volumes:
+#   pgdata:
+#     driver: local
 
 
 # docker run -p 5432:5432 -v /tmp/database/chick_db:/var/lib/postgresql/data -e POSTGRES_PASSWORD=example postgres 
