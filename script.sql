@@ -21,4 +21,3 @@ create table if not exists plano (
 	constraint fk_pessoa_plano foreign key(id_pessoa) references pessoa(id_pessoa),
 	constraint fk_pet_plano foreign key(id_pet) references pet(id_pet)	
 );
-

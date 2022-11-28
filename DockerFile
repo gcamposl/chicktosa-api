@@ -1,26 +1,20 @@
-# FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine as build
-# WORKDIR /app
-# COPY . .
-# RUN dotnet restore
-# RUN dotnet publish -o /app/published-app
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS base
+WORKDIR /app
 
-# FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine as runtime
-# WORKDIR /app
-# COPY --from=build /app/published-app /app
-# ENTRYPOINT [ "dotnet", "/app/DockerNetExample.dll" ]
+EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
-WORKDIR /Ck.Server
+ENV ASPNETCORE_URLS=http://+:80
 
-# Copy everything
-COPY . ./
-# Restore as distinct layers
-RUN dotnet restore
-# Build and publish a release
-RUN dotnet publish -c Release -o out
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
+WORKDIR /src
+COPY ["xxxx.csproj", "./"]
+RUN dotnet restore "xxxx.csproj"
+COPY . .
+WORKDIR "/src/."
+RUN dotnet build "xxxx.csproj" -c Release -o /app/build
 
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
-WORKDIR /Ck.Server.Api
-COPY --from=build-env /App/out .
-ENTRYPOINT ["dotnet", "Ck.Server.Api.dll"]
+FROM build AS publish
+RUN dotnet publish "xxxx.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
