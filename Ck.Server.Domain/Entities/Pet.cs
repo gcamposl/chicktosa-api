@@ -14,12 +14,12 @@ namespace Ck.Server.Domain.Entities
     public decimal Weight { get; private set; }
     public ICollection<Plan> Plan { get; set; }
 
-    public Pet(string name, string race, float weight)
+    public Pet(string name, string race, decimal weight)
     {
       Validation(name, race, weight);
     }
 
-    public Pet(int id, string name, string race, string weight)
+    public Pet(int id, string name, string race, decimal weight)
     {
       DomainValidationException.When(id < 0, "Id inválido!");
       Id = id;

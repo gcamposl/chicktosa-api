@@ -11,7 +11,7 @@ namespace Ck.Server.Domain.Validations
     public DomainValidationException(string error) : base(error)
     { }
 
-    public static void When(string hasError, string message)
+    public static void When(bool hasError, string message)
     {
       if (hasError)
       {
