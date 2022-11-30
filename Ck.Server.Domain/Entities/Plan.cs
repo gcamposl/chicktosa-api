@@ -13,7 +13,7 @@ namespace Ck.Server.Domain.Entities
     public int PetId { get; private set; }
     public DateTime Maturity { get; private set; }
     public decimal Price { get; private set; }
-    public Person Pet { get; set; }
+    public Pet Pet { get; set; }
     public Person Person { get; set; }
 
     public Plan(int petId, int personId, DateTime? maturity, decimal price)
@@ -23,7 +23,7 @@ namespace Ck.Server.Domain.Entities
 
     public Plan(int id, int petId, int personId, DateTime? maturity, decimal price)
     {
-      DomainValidationException(id < 0, "Id inválido!");
+      DomainValidationException.When(id < 0, "Id inválido!");
       Id = id;
       Validation(petId, personId, maturity, price);
     }
