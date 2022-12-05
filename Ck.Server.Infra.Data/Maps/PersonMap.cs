@@ -12,7 +12,7 @@ namespace Ck.Server.Infra.Data.Maps
   {
     public void Configure(EntityTypeBuilder<Person> builder)
     {
-      builder.ToTable("Pessoa");
+      builder.ToTable("pessoa");
       builder.HasKey(c => c.Id);
       builder.Property(c => c.Id)
         .HasColumnName("id_pessoa")
@@ -22,7 +22,7 @@ namespace Ck.Server.Infra.Data.Maps
         .HasColumnName("nome");
 
       builder.Property(c => c.Document)
-          .HasColumnName("documento");
+        .HasColumnName("documento");
 
       builder.Property(c => c.Phone)
         .HasColumnName("telefone");
