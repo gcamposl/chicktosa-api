@@ -10,7 +10,9 @@ namespace Ck.Server.Infra.Data.Context
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     { }
 
-    public DbSet<Person> People { get; set; }
+    public DbSet<Person> Person { get; set; }
+    public DbSet<Pet> Pet { get; set; }
+    public DbSet<Plan> Plan { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       base.OnModelCreating(modelBuilder);
