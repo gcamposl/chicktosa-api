@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using Ck.Server.Domain.Entities;
 using Ck.Server.Domain.Repositories;
 using Ck.Server.Infra.Data.Context;

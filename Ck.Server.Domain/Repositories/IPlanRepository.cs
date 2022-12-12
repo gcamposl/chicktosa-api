@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Ck.Server.Domain.Entities;
 
 namespace Ck.Server.Domain.Repositories
