@@ -18,6 +18,7 @@ namespace Ck.Server.Domain.Entities
     public Person(string name, string document, string phone)
     {
       Validation(name, document, phone);
+      Plan = new List<Plan>();
     }
 
     public Person(int id, string name, string document, string phone)
