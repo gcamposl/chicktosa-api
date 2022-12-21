@@ -24,7 +24,7 @@ namespace Ck.Server.Infra.IoC
     {
       // injetando service de database
       services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseNpgsql(configuration.GetConnectionString("")));
+        options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
       // injetando service de repository
       services.AddScoped<IPersonRepository, PersonRepository>();
@@ -33,7 +33,7 @@ namespace Ck.Server.Infra.IoC
     }
 
     // injetando depencia para services
-    public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddService(this IServiceCollection services, IConfiguration configuration)
     {
 
       services.AddAutoMapper(typeof(DtoToDomainMapping));

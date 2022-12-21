@@ -1,3 +1,5 @@
+using Ck.Server.Infra.IoC;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.services.AddServices(builder.Configuration);
+builder.Services.AddService(builder.Configuration);
 
 var app = builder.Build();
 
