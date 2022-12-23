@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Ck.Server.Infra.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,14 +11,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddService(builder.Configuration);
+builder.Services.AddMvc().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+}); // retorna null aonde nao tiver valor no payload da enviado pela api
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-  app.UseSwagger();
-  app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
