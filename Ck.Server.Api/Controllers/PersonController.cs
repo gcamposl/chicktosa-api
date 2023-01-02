@@ -1,13 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Ck.Server.Application.DTOs;
 using Ck.Server.Application.Services.Interfaces;
-using Ck.Server.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace Ck.Server.Api.Controllers
 {
@@ -47,6 +40,26 @@ namespace Ck.Server.Api.Controllers
         public async Task<ActionResult> GetByIdAsync(int id)
         {
             var result = await _personService.GetByIdAsync(id);
+            if (result.IsSucess)
+                return Ok(result);
+
+            return BadRequest(result);
+        }
+        [HttpPut]
+        public async Task<ActionResult> Updatesync([FromBody] PersonDTO personDTO)
+        {
+            var result = await _personService.UpdateAsync(personDTO);
+            if (result.IsSucess)
+                return Ok(result);
+
+            return BadRequest(result);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<ActionResult> DeleteAsync(int id)
+        {
+            var result = await _personService.DeleteAsync(id);
             if (result.IsSucess)
                 return Ok(result);
 
