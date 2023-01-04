@@ -8,7 +8,7 @@ using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Ck.Server.Infra.Data.Maps
+namespace Data.Maps
 {
     public class PetMap : IEntityTypeConfiguration<Pet>
     {

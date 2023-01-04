@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ck.Server.Infra.Data.Context
+namespace Data.Context
 {
     public class ApplicationDbContext : DbContext // AQUI NAO ESTA REFERENCIANDO
     {

@@ -1,9 +1,9 @@
 using Domain.Entities;
 using Domain.Repositories;
-using Ck.Server.Infra.Data.Context;
+using Data.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ck.Server.Infra.Data.Repositories
+namespace Data.Repositories
 {
     public class PetRepository : IPetRepository
     {

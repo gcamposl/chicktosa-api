@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Ck.Server.Infra.IoC;
+using IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 

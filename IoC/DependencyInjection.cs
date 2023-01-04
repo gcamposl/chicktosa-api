@@ -8,13 +8,13 @@ using Application.Mappings;
 using Application.Services;
 using Application.Services.Interfaces;
 using Domain.Repositories;
-using Ck.Server.Infra.Data.Context;
-using Ck.Server.Infra.Data.Repositories;
+using Data.Context;
+using Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Ck.Server.Infra.IoC
+namespace IoC
 {
     public static class DependencyInjection
     {
