@@ -28,6 +28,7 @@ namespace IoC
 
             // injetando service de repository
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IPetRepository, PetRepository>();
 
             return services;
         }
@@ -35,9 +36,9 @@ namespace IoC
         // injetando depencia para services
         public static IServiceCollection AddService(this IServiceCollection services, IConfiguration configuration)
         {
-
             services.AddAutoMapper(typeof(DtoToDomainMapping));
             services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IPetService, PetService>();
 
             return services;
         }
