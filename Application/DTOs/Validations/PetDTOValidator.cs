@@ -6,10 +6,6 @@ namespace Application.DTOs.Validations
     {
         public PetDTOValidator()
         {
-            RuleFor(x => x.Id)
-                .NotEmpty()
-                .NotNull()
-                .WithMessage("Id do Pet deve ser informado!");
             RuleFor(x => x.Name)
                 .NotEmpty()
                 .NotNull()
