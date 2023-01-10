@@ -17,7 +17,6 @@ namespace Domain.Entities
         public Pet(string name, string race, decimal weight)
         {
             Validation(name, race, weight);
-            Plan = new List<Plan>();
         }
 
         public Pet(int id, string name, string race, decimal weight)
