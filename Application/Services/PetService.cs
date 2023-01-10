@@ -35,5 +35,19 @@ namespace Application.Services
             var data = await _petRepository.CreateAsync(pet);
             return ResultService.Ok<PetDTO>(_mapper.Map<PetDTO>(data));
         }
+
+        public async Task<ResultService<ICollection<PetDTO>>> GetAsync()
+        {
+            var pets = await _petRepository.GetAsync();
+            return ResultService.Ok<ICollection<PetDTO>>(_mapper.Map<ICollection<PetDTO>>(pets));
+        }
+
+        public async Task<ResultService<PetDTO>> GetByIdAsync(int id)
+        {
+            var pet = await _petRepository.GetByIdAsync(id);
+            if (pet == null)
+                return ResultService.Fail<PetDTO>("Pet não encontrado!");
+            return ResultService.Ok<PetDTO>(_mapper.Map<PetDTO>(pet));
+        }
     }
 }

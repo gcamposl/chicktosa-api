@@ -45,7 +45,7 @@ namespace Application.Services
             var person = await _personRepository.GetByIdAsync(id);
             if (person == null)
                 return ResultService.Fail<PersonDTO>("Pessoa não encontrada");
-            return ResultService.Ok(_mapper.Map<PersonDTO>(person));
+            return ResultService.Ok<PersonDTO>(_mapper.Map<PersonDTO>(person));
         }
 
         public async Task<ResultService> UpdateAsync(PersonDTO personDTO)
