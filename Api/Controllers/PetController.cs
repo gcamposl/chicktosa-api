@@ -46,7 +46,26 @@ namespace Api.Controllers
             var result = await _petService.GetAsync();
             if (result.IsSucess)
                 return Ok(result);
-            return BadRequest();
+            return BadRequest(result);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateAsync([FromBody] PetDTO pet)
+        {
+            var result = await _petService.UpdateAsync(pet);
+            if (result.IsSucess)
+                return Ok(result);
+            return BadRequest(result);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<ActionResult> DeleteAsync(int id)
+        {
+            var result = await _petService.DeleteAsync(id);
+            if (result.IsSucess)
+                return Ok(result);
+            return BadRequest(result);
         }
     }
 }

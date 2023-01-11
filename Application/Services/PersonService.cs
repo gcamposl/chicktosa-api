@@ -54,12 +54,10 @@ namespace Application.Services
                 return ResultService.Fail("Objeto deve ser informado");
 
             var validation = new PersonDTOValidator().Validate(personDTO);
-
             if (!validation.IsValid)
                 return ResultService.RequestError("Problemas com a validação dos campos!", validation);
 
             var person = await _personRepository.GetByIdAsync(personDTO.Id);
-
             if (person == null)
                 return ResultService.Fail("Pessoa não encontrada");
 

@@ -49,5 +49,33 @@ namespace Application.Services
                 return ResultService.Fail<PetDTO>("Pet não encontrado!");
             return ResultService.Ok<PetDTO>(_mapper.Map<PetDTO>(pet));
         }
+
+        public async Task<ResultService> UpdateAsync(PetDTO petDTO)
+        {
+            if (petDTO == null)
+                return ResultService.Fail("O pet deve ser informado!");
+
+            var validation = new PetDTOValidator().Validate(petDTO);
+            if (!validation.IsValid)
+                return ResultService.RequestError("erro na validação do pet!", validation);
+
+            var pet = await _petRepository.GetByIdAsync(petDTO.Id);
+            if (pet == null)
+                return ResultService.Fail("Pet não encontrado!");
+
+            pet = _mapper.Map<PetDTO, Pet>(petDTO, pet);
+            await _petRepository.UpdateAsync(pet);
+            return ResultService.Ok("Pet editado!");
+        }
+
+        public async Task<ResultService> DeleteAsync(int id)
+        {
+            var pet = await _petRepository.GetByIdAsync(id);
+            if (pet == null)
+                return ResultService.Fail("Pet não encontrado!");
+
+            await _petRepository.DeleteAsync(pet);
+            return ResultService.Ok($"Pet do id:{id} foi deletado!");
+        }
     }
 }
