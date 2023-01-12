@@ -41,5 +41,10 @@ namespace Data.Repositories
         {
             return await _db.Person.ToListAsync();
         }
+
+        public async Task<int> GetIdByDocumentAsync(string document)
+        {
+            return (await _db.Person.FirstOrDefaultAsync(x => x.Document == document))?.Id ?? 0;
+        }
     }
 }

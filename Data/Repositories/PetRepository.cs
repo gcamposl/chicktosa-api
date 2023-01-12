@@ -40,5 +40,10 @@ namespace Data.Repositories
         {
             return await _db.Pet.ToListAsync();
         }
+
+        public async Task<int> GetIdByNameAsync(string name)
+        {
+            return (await _db.Pet.FirstOrDefaultAsync(x => x.Name == name))?.Id ?? 0;
+        }
     }
 }
