@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Domain.Validations;
 
 namespace Domain.Entities
@@ -16,26 +12,24 @@ namespace Domain.Entities
         public Pet Pet { get; set; }
         public Person Person { get; set; }
 
-        public Plan(int petId, int personId, decimal price)
+        public Plan(int petId, int personId)
         {
-            Validation(petId, personId, price);
+            Validation(petId, personId);
         }
-
-        public Plan(int id, int petId, int personId, decimal price)
+        public Plan(int id, int petId, int personId)
         {
-            DomainValidationException.When(id < 0, "Id inválido!");
+            DomainValidationException.When(id <= 0, "Id inválido!");
             Id = id;
-            Validation(petId, personId, price);
+            Validation(petId, personId);
         }
-        private void Validation(int petId, int personId, decimal price)
+        private void Validation(int petId, int personId)
         {
-            DomainValidationException.When(PetId < 0, "Id do produto inválido!");
-            DomainValidationException.When(personId < 0, "Id da pessoa inválido!");
-            DomainValidationException.When(price < 0, "Preço inválido!");
+            DomainValidationException.When(petId <= 0, "Id do pet inválido!");
+            DomainValidationException.When(personId <= 0, "Id da pessoa inválido!");
 
             PersonId = personId;
             PetId = petId;
-            Price = price;
+            Price = 0;
             Maturity = DateTime.Now;
         }
     }

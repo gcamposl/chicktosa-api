@@ -26,6 +26,7 @@ namespace Data.Maps
               .HasColumnName("id_pet");
 
             builder.Property(p => p.Maturity)
+              .HasColumnType("date")
               .HasColumnName("data_vencimento");
 
             builder.Property(p => p.Price)

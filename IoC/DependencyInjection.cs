@@ -29,6 +29,7 @@ namespace IoC
             // injetando service de repository
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IPetRepository, PetRepository>();
+            services.AddScoped<IPlanRepository, PlanRepository>();
 
             return services;
         }
@@ -39,6 +40,7 @@ namespace IoC
             services.AddAutoMapper(typeof(DtoToDomainMapping));
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IPetService, PetService>();
+            services.AddScoped<IPlanService, PlanService>();
 
             return services;
         }
