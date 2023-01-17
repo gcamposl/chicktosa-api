@@ -32,14 +32,20 @@ namespace Data.Repositories
             await _db.SaveChangesAsync();
         }
 
+        public async Task<ICollection<Plan>> GetAllAsync()
+        {
+            return await _db.Plan
+              .Include(x => x.Person)
+              .Include(x => x.Pet)
+              .ToListAsync();
+        }
+
         public async Task<Plan> GetByIdAsync(int id)
         {
-            var plan = await _db.Plan
+            return await _db.Plan
               .Include(x => x.Person)
               .Include(x => x.Pet)
               .FirstOrDefaultAsync(x => x.Id == id);
-
-            return plan;
         }
 
         public async Task<ICollection<Plan>> GetByPersonIdAsync(int personId)
@@ -56,14 +62,6 @@ namespace Data.Repositories
               .Include(x => x.Person)
               .Include(x => x.Pet)
               .Where(x => x.PetId == petId).ToListAsync();
-        }
-
-        public async Task<ICollection<Plan>> GetAllAsync()
-        {
-            return await _db.Plan
-              .Include(x => x.Person)
-              .Include(x => x.Pet)
-              .ToListAsync();
         }
     }
 }

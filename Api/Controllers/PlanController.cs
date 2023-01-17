@@ -1,3 +1,4 @@
+using System.Net;
 using Application.DTOs;
 using Application.Services;
 using Application.Services.Interfaces;
@@ -33,6 +34,25 @@ namespace Api.Controllers
                 var result = ResultService.Fail(ex.Message);
                 return BadRequest(result);
             }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetAsync()
+        {
+            var result = await _planService.GetAsync();
+            if (result.IsSucess)
+                return Ok(result);
+            return BadRequest(result);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult> GetByIdAsync(int id)
+        {
+            var result = await _planService.GetByIdAsync(id);
+            if (result.IsSucess)
+                return Ok(result);
+            return BadRequest(result);
         }
     }
 }

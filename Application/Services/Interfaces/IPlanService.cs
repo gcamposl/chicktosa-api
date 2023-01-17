@@ -10,5 +10,7 @@ namespace Application.Services.Interfaces
     public interface IPlanService
     {
         Task<ResultService<PlanDTO>> CreateAsync(PlanDTO planDTO);
+        Task<ResultService<PlanDetailDTO>> GetByIdAsync(int id);
+        Task<ResultService<ICollection<PlanDetailDTO>>> GetAsync();
     }
 }
