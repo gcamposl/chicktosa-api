@@ -54,5 +54,34 @@ namespace Api.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateAsync([FromBody] PlanDTO planDTO)
+        {
+            try
+            {
+                var result = await _planService.UpdateAsync(planDTO);
+                if (result.IsSucess)
+                    return Ok(result);
+                return BadRequest(result);
+            }
+            catch (DomainValidationException ex)
+            {
+                var result = ResultService.Fail(ex.Message);
+                return BadRequest(result);
+            }
+        }
+
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<ActionResult> DeleteAsync(int id)
+        {
+            var result = await _planService.DeleteAsync(id);
+            if (result.IsSucess)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }

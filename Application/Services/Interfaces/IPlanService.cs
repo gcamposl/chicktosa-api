@@ -12,5 +12,7 @@ namespace Application.Services.Interfaces
         Task<ResultService<PlanDTO>> CreateAsync(PlanDTO planDTO);
         Task<ResultService<PlanDetailDTO>> GetByIdAsync(int id);
         Task<ResultService<ICollection<PlanDetailDTO>>> GetAsync();
+        Task<ResultService<PlanDTO>> UpdateAsync(PlanDTO planDTO);
+        Task<ResultService> DeleteAsync(int id);
     }
 }

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Domain.Validations;
 
 namespace Domain.Entities
@@ -17,6 +18,12 @@ namespace Domain.Entities
             Validation(petId, personId);
         }
         public Plan(int id, int petId, int personId)
+        {
+            DomainValidationException.When(id <= 0, "Id inválido!");
+            Id = id;
+            Validation(petId, personId);
+        }
+        public void Edit(int id, int petId, int personId)
         {
             DomainValidationException.When(id <= 0, "Id inválido!");
             Id = id;

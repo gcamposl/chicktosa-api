@@ -44,7 +44,7 @@ namespace Application.Services
         {
             var person = await _personRepository.GetByIdAsync(id);
             if (person == null)
-                return ResultService.Fail<PersonDTO>("Pessoa não encontrada");
+                return ResultService.Fail<PersonDTO>("Pessoa inexistente");
             return ResultService.Ok<PersonDTO>(_mapper.Map<PersonDTO>(person));
         }
 
@@ -59,7 +59,7 @@ namespace Application.Services
 
             var person = await _personRepository.GetByIdAsync(personDTO.Id);
             if (person == null)
-                return ResultService.Fail("Pessoa não encontrada");
+                return ResultService.Fail("Pessoa inexistente!");
 
             person = _mapper.Map<PersonDTO, Person>(personDTO, person);
             await _personRepository.UpdateAsync(person);
@@ -70,7 +70,7 @@ namespace Application.Services
         {
             var person = await _personRepository.GetByIdAsync(id);
             if (person == null)
-                return ResultService.Fail("Pessoa não encontrada!");
+                return ResultService.Fail("Pessoa inexistente!");
             await _personRepository.DeleteAsync(person);
             return ResultService.Ok($"Pessoa com id:{id} deletada com sucesso!");
 

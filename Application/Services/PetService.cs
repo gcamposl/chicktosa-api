@@ -46,7 +46,7 @@ namespace Application.Services
         {
             var pet = await _petRepository.GetByIdAsync(id);
             if (pet == null)
-                return ResultService.Fail<PetDTO>("Pet não encontrado!");
+                return ResultService.Fail<PetDTO>("Pet inexistente!");
             return ResultService.Ok<PetDTO>(_mapper.Map<PetDTO>(pet));
         }
 
@@ -61,7 +61,7 @@ namespace Application.Services
 
             var pet = await _petRepository.GetByIdAsync(petDTO.Id);
             if (pet == null)
-                return ResultService.Fail("Pet não encontrado!");
+                return ResultService.Fail("Pet inexistente!");
 
             pet = _mapper.Map<PetDTO, Pet>(petDTO, pet);
             await _petRepository.UpdateAsync(pet);
@@ -72,7 +72,7 @@ namespace Application.Services
         {
             var pet = await _petRepository.GetByIdAsync(id);
             if (pet == null)
-                return ResultService.Fail("Pet não encontrado!");
+                return ResultService.Fail("Pet inexistente!");
 
             await _petRepository.DeleteAsync(pet);
             return ResultService.Ok($"Pet do id:{id} foi deletado!");

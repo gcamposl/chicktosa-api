@@ -50,8 +50,39 @@ namespace Application.Services
         {
             var plan = await _planRepository.GetByIdAsync(id);
             if (plan == null)
-                return ResultService.Fail<PlanDetailDTO>($"Plano com id:{id} não existe!");
+                return ResultService.Fail<PlanDetailDTO>($"Plano com id:{id} inexistente!");
             return ResultService.Ok(_mapper.Map<PlanDetailDTO>(plan));
+        }
+
+        public async Task<ResultService<PlanDTO>> UpdateAsync(PlanDTO planDTO)
+        {
+            if (planDTO == null)
+                return ResultService.Fail<PlanDTO>("Plano inexistente");
+
+            var validation = new PlanDTOValidator().Validate(planDTO);
+            if (!validation.IsValid)
+                return ResultService.RequestError<PlanDTO>("Erro na validação do Plano!", validation);
+
+            var plan = await _planRepository.GetByIdAsync(planDTO.Id);
+            if (plan == null)
+                return ResultService.Fail<PlanDTO>($"Plano de id: {planDTO.Id} inexistente!");
+
+            var petId = await _petRepository.GetIdByNameAsync(planDTO.Name);
+            var personId = await _personRepository.GetIdByDocumentAsync(planDTO.Document);
+
+            plan.Edit(plan.Id, petId, personId);
+            await _planRepository.UpdateAsync(plan);
+            return ResultService.Ok(planDTO);
+        }
+
+        public async Task<ResultService> DeleteAsync(int id)
+        {
+            var plan = await _planRepository.GetByIdAsync(id);
+            if (plan == null)
+                return ResultService.Fail($"Plano de id: {id} é inexistente!");
+
+            await _planRepository.DeleteAsync(plan);
+            return ResultService.Ok($"Plano de id: {id} foi deletado!");
         }
     }
 }
