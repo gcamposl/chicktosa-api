@@ -8,6 +8,7 @@ using Application.Services.Interfaces;
 using Domain.Entities;
 using Domain.Repositories;
 using FluentValidation.Validators;
+using Domain.FiltersDB;
 
 namespace Application.Services
 {
@@ -74,6 +75,15 @@ namespace Application.Services
             await _personRepository.DeleteAsync(person);
             return ResultService.Ok($"Pessoa com id:{id} deletada com sucesso!");
 
+        }
+
+        public async Task<ResultService<PagedBaseResponseDTO<PersonDTO>>> GetPagedAsync(PersonFilterDb personFilterDb)
+        {
+            var personPaged = await _personRepository.GetPagedAsync(personFilterDb);
+            var personMap = _mapper.Map<List<PersonDTO>>(personPaged.Data);
+            var result = new PagedBaseResponseDTO<PersonDTO>(personPaged.TotalRegisters, personMap);
+
+            return ResultService.Ok(result);
         }
     }
 }

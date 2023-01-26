@@ -3,6 +3,7 @@ using Domain.Entities;
 using Domain.Repositories;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Domain.FiltersDB;
 
 namespace Data.Repositories
 {
@@ -45,6 +46,16 @@ namespace Data.Repositories
         public async Task<int> GetIdByDocumentAsync(string document)
         {
             return (await _db.Person.FirstOrDefaultAsync(x => x.Document == document))?.Id ?? 0;
+        }
+
+        public async Task<PagedBaseReponse<Person>> GetPagedAsync(PersonFilterDb request)
+        {
+            var person = _db.Person.AsQueryable();
+            if (!string.IsNullOrEmpty(request.Name))
+                person = person.Where(x => x.Name.Contains(request.Name));
+
+            return await PagedBaseResponseHelper
+                .GetResponseAsync<PagedBaseReponse<Person>, Person>(person, request);
         }
     }
 }

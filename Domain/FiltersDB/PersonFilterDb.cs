@@ -8,6 +8,6 @@ namespace Domain.FiltersDB
 {
     public class PersonFilterDb : PagedBaseRequest
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

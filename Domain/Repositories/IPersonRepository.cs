@@ -1,5 +1,6 @@
 using System;
 using Domain.Entities;
+using Domain.FiltersDB;
 
 namespace Domain.Repositories
 {
@@ -11,5 +12,6 @@ namespace Domain.Repositories
         Task UpdateAsync(Person person);
         Task DeleteAsync(Person person);
         Task<int> GetIdByDocumentAsync(string document);
+        Task<PagedBaseReponse<Person>> GetPagedAsync(PersonFilterDb request);
     }
 }

@@ -1,5 +1,6 @@
 using Application.DTOs;
 using Application.Services.Interfaces;
+using Domain.FiltersDB;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -45,6 +46,7 @@ namespace Api.Controllers
 
             return BadRequest(result);
         }
+
         [HttpPut]
         public async Task<ActionResult> Updatesync([FromBody] PersonDTO personDTO)
         {
@@ -60,6 +62,17 @@ namespace Api.Controllers
         public async Task<ActionResult> DeleteAsync(int id)
         {
             var result = await _personService.DeleteAsync(id);
+            if (result.IsSucess)
+                return Ok(result);
+
+            return BadRequest(result);
+        }
+
+        [HttpGet]
+        [Route("paged")]
+        public async Task<ActionResult> GetPagedAsync([FromQuery] PersonFilterDb personFilterDb)
+        {
+            var result = await _personService.GetPagedAsync(personFilterDb);
             if (result.IsSucess)
                 return Ok(result);
 

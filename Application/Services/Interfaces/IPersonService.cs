@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.DTOs;
 using Domain.Entities;
+using Domain.FiltersDB;
 
 namespace Application.Services.Interfaces
 {
@@ -14,5 +15,6 @@ namespace Application.Services.Interfaces
         Task<ResultService<PersonDTO>> GetByIdAsync(int id);
         Task<ResultService> UpdateAsync(PersonDTO personDTO);
         Task<ResultService> DeleteAsync(int id);
+        Task<ResultService<PagedBaseResponseDTO<PersonDTO>>> GetPagedAsync(PersonFilterDb personFilterDb);
     }
 }
