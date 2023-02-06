@@ -13,14 +13,16 @@ namespace Application.Services
         private readonly IPersonRepository _personRepository;
         private readonly IPlanRepository _planRepository;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
         public PlanService(IPetRepository petRepository, IPersonRepository personRepository,
-                             IPlanRepository planRepository, IMapper mapper)
+                             IPlanRepository planRepository, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _petRepository = petRepository;
             _personRepository = personRepository;
             _planRepository = planRepository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
         public async Task<ResultService<PlanDTO>> CreateAsync(PlanDTO planDTO)
         {
@@ -32,6 +34,10 @@ namespace Application.Services
                 return ResultService.RequestError<PlanDTO>("Problemas de validação no plano!", validate);
 
             var petId = await _petRepository.GetIdByNameAsync(planDTO.Name);
+            if (petId == 0)
+            {
+                // cadastrar novo pet com as informacoes da dto.
+            }
             var personId = await _personRepository.GetIdByDocumentAsync(planDTO.Document);
             var plan = new Plan(petId, personId);
             var data = await _planRepository.CreateAsync(plan);

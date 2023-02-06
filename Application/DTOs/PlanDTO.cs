@@ -10,5 +10,7 @@ namespace Application.DTOs
         public string Name { get; set; }
         public string Document { get; set; }
         public int Id { get; set; }
+        public string? PetName { get; set; }
+        public decimal? Price { get; set; }
     }
 }
