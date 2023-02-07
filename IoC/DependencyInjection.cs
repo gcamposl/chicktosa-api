@@ -30,6 +30,7 @@ namespace IoC
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IPlanRepository, PlanRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }

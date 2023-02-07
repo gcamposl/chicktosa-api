@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using Application.DTOs;
 using Application.DTOs.Validations;
 using Application.Services.Interfaces;
@@ -33,17 +34,28 @@ namespace Application.Services
             if (!validate.IsValid)
                 return ResultService.RequestError<PlanDTO>("Problemas de validação no plano!", validate);
 
-            var petId = await _petRepository.GetIdByNameAsync(planDTO.Name);
-            if (petId == 0)
+            try
             {
-                // cadastrar novo pet com as informacoes da dto.
+                await _unitOfWork.BeginTransaction();
+                var petId = await _petRepository.GetIdByNameAsync(planDTO.Name);
+                if (petId == 0)
+                {
+                    var pet = new Pet(planDTO.PetName, planDTO.Race, planDTO.Weight ?? 0);
+                    await _petRepository.CreateAsync(pet);
+                    petId = pet.Id;
+                }
+                var personId = await _personRepository.GetIdByDocumentAsync(planDTO.Document);
+                var plan = new Plan(petId, personId);
+                var data = await _planRepository.CreateAsync(plan);
+                planDTO.Id = data.Id;
+                await _unitOfWork.Commit();
+                return ResultService.Ok<PlanDTO>(planDTO);
             }
-            var personId = await _personRepository.GetIdByDocumentAsync(planDTO.Document);
-            var plan = new Plan(petId, personId);
-            var data = await _planRepository.CreateAsync(plan);
-            planDTO.Id = data.Id;
-
-            return ResultService.Ok<PlanDTO>(planDTO);
+            catch (Exception ex)
+            {
+                await _unitOfWork.Rollback();
+                return ResultService.Fail<PlanDTO>($"{ex.Message}");
+            }
         }
 
         public async Task<ResultService<ICollection<PlanDetailDTO>>> GetAsync()
