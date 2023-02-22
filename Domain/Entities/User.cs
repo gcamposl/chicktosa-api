@@ -18,7 +18,7 @@ namespace Domain.Entities
 
         public User(int id, string email, string password)
         {
-            DomainValidationException.When(id <= 0, "Id deve ser maior do que 0!");
+            DomainValidationException.When(id <= 0, "Id deve ser informado!");
             Id = id;
             Validation(email, password);
         }

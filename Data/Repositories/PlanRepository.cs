@@ -34,7 +34,7 @@ namespace Data.Repositories
 
         public async Task<ICollection<Plan>> GetAllAsync()
         {
-            return await _db.Plan
+            return await _db.Plans
               .Include(x => x.Person)
               .Include(x => x.Pet)
               .ToListAsync();
@@ -42,7 +42,7 @@ namespace Data.Repositories
 
         public async Task<Plan> GetByIdAsync(int id)
         {
-            return await _db.Plan
+            return await _db.Plans
               .Include(x => x.Person)
               .Include(x => x.Pet)
               .FirstOrDefaultAsync(x => x.Id == id);
@@ -50,7 +50,7 @@ namespace Data.Repositories
 
         public async Task<ICollection<Plan>> GetByPersonIdAsync(int personId)
         {
-            return await _db.Plan
+            return await _db.Plans
               .Include(x => x.Person)
               .Include(x => x.Pet)
               .Where(x => x.PersonId == personId).ToListAsync();
@@ -58,7 +58,7 @@ namespace Data.Repositories
 
         public async Task<ICollection<Plan>> GetByPetIdAsync(int petId)
         {
-            return await _db.Plan
+            return await _db.Plans
               .Include(x => x.Person)
               .Include(x => x.Pet)
               .Where(x => x.PetId == petId).ToListAsync();

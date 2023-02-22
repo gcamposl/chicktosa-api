@@ -11,8 +11,9 @@ namespace Data.Context
         { }
 
         public DbSet<Person> Person { get; set; }
-        public DbSet<Pet> Pet { get; set; }
-        public DbSet<Plan> Plan { get; set; }
+        public DbSet<Pet> Pets { get; set; }
+        public DbSet<Plan> Plans { get; set; }
+        public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

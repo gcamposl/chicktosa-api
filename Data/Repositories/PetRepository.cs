@@ -33,17 +33,17 @@ namespace Data.Repositories
 
         public async Task<Pet> GetByIdAsync(int id)
         {
-            return await _db.Pet.FirstOrDefaultAsync(x => x.Id == id);
+            return await _db.Pets.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<ICollection<Pet>> GetAsync()
         {
-            return await _db.Pet.ToListAsync();
+            return await _db.Pets.ToListAsync();
         }
 
         public async Task<int> GetIdByNameAsync(string name)
         {
-            return (await _db.Pet.FirstOrDefaultAsync(x => x.Name == name))?.Id ?? 0;
+            return (await _db.Pets.FirstOrDefaultAsync(x => x.Name == name))?.Id ?? 0;
         }
     }
 }
