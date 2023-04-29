@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.DTOs;
+using Application.DTOs.Validations;
 using Application.Services.Interfaces;
 using Domain.Authentication;
 using Domain.Repositories;
@@ -25,7 +26,15 @@ namespace Application.Services
             if (userDTO == null)
                 return ResultService.Fail<dynamic>("");
 
-            return null;
+            var validator = new UserDTOValidator().Validate(userDTO);
+            if (!validator.IsValid)
+                return ResultService.RequestError<dynamic>("Problemas com a validação de usuário!", validator);
+
+            var user = await _userRepository.GetUserByEmailAndPasswordAsync(userDTO.Email, userDTO.Password);
+            if (user == null)
+                return ResultService.Fail<dynamic>("Usuário ou senha não encontrados!");
+
+            return ResultService.Ok(_tokenGenerator.Generator(user));
         }
     }
 }
