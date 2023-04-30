@@ -13,6 +13,8 @@ using Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Domain.Authentication;
+using Data.Authentication;
 
 namespace IoC
 {
@@ -31,6 +33,8 @@ namespace IoC
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IPlanRepository, PlanRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ITokenGenerator, TokenGenerator>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }
@@ -42,6 +46,7 @@ namespace IoC
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IPetService, PetService>();
             services.AddScoped<IPlanService, PlanService>();
+            services.AddScoped<IUserService, UserService>();
 
             return services;
         }

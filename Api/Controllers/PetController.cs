@@ -24,7 +24,7 @@ namespace Api.Controllers
         public async Task<ActionResult> PostAsync([FromBody] PetDTO petDTO)
         {
             var result = await _petService.CreateAsync(petDTO);
-            if (result.IsSucess)
+            if (result.IsSuccess)
                 return Ok(result);
 
             return BadRequest(result);
@@ -35,7 +35,7 @@ namespace Api.Controllers
         public async Task<ActionResult> GetByIdAsync(int id)
         {
             var result = await _petService.GetByIdAsync(id);
-            if (result.IsSucess)
+            if (result.IsSuccess)
                 return Ok(result);
             return BadRequest(result);
         }
@@ -44,7 +44,7 @@ namespace Api.Controllers
         public async Task<ActionResult> GetAsync()
         {
             var result = await _petService.GetAsync();
-            if (result.IsSucess)
+            if (result.IsSuccess)
                 return Ok(result);
             return BadRequest(result);
         }
@@ -53,7 +53,7 @@ namespace Api.Controllers
         public async Task<ActionResult> UpdateAsync([FromBody] PetDTO pet)
         {
             var result = await _petService.UpdateAsync(pet);
-            if (result.IsSucess)
+            if (result.IsSuccess)
                 return Ok(result);
             return BadRequest(result);
         }
@@ -63,7 +63,7 @@ namespace Api.Controllers
         public async Task<ActionResult> DeleteAsync(int id)
         {
             var result = await _petService.DeleteAsync(id);
-            if (result.IsSucess)
+            if (result.IsSuccess)
                 return Ok(result);
             return BadRequest(result);
         }

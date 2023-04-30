@@ -25,7 +25,7 @@ namespace Api.Controllers
             try
             {
                 var result = await _planService.CreateAsync(planDTO);
-                if (result.IsSucess)
+                if (result.IsSuccess)
                     return Ok(result);
                 return BadRequest(result);
             }
@@ -40,7 +40,7 @@ namespace Api.Controllers
         public async Task<ActionResult> GetAsync()
         {
             var result = await _planService.GetAsync();
-            if (result.IsSucess)
+            if (result.IsSuccess)
                 return Ok(result);
             return BadRequest(result);
         }
@@ -50,7 +50,7 @@ namespace Api.Controllers
         public async Task<ActionResult> GetByIdAsync(int id)
         {
             var result = await _planService.GetByIdAsync(id);
-            if (result.IsSucess)
+            if (result.IsSuccess)
                 return Ok(result);
             return BadRequest(result);
         }
@@ -62,7 +62,7 @@ namespace Api.Controllers
             try
             {
                 var result = await _planService.UpdateAsync(planDTO);
-                if (result.IsSucess)
+                if (result.IsSuccess)
                     return Ok(result);
                 return BadRequest(result);
             }
@@ -79,7 +79,7 @@ namespace Api.Controllers
         public async Task<ActionResult> DeleteAsync(int id)
         {
             var result = await _planService.DeleteAsync(id);
-            if (result.IsSucess)
+            if (result.IsSuccess)
                 return Ok(result);
             return BadRequest(result);
         }
