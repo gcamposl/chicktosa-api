@@ -24,7 +24,7 @@ namespace Data.Authentication
             };
 
             var expires = DateTime.Now.AddDays(1);
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("testePass"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("projetoDotNetCore6"));
             var tokenData = new JwtSecurityToken(
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature),
                 expires: expires,
