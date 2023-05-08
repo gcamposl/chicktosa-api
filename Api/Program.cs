@@ -16,21 +16,23 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    c.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "ChickTosa",
         Version = "v1",
         Description = "Api chicktosa"
     });
-    c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = @"Autenticação em JWT. \r\n\r\n
                         Ex: Bearer {token}",
         Name = "Authorization",
-        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+
         Scheme = "Bearer"
     });
-    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement()
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
     {
         {
             new OpenApiSecurityScheme
@@ -55,7 +57,7 @@ builder.Services.AddMvc().AddJsonOptions(options =>
     options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
 }); // retorna null aonde nao tiver valor no payload da enviado pela api
 
-var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("testePass"));
+var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("projetoDotNetCore6"));
 builder.Services.AddAuthentication(authOptions =>
 {
     authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -67,7 +69,7 @@ builder.Services.AddAuthentication(authOptions =>
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
-        ValidateLifetime = false,
+        ValidateLifetime = true,
         IssuerSigningKey = key,
         ValidateAudience = false,
         ValidateIssuer = false
