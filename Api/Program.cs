@@ -3,9 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text.Json.Serialization;
 using System.Text;
 using IoC;
-using Npgsql.Internal.TypeHandlers.DateTimeHandlers;
 using Microsoft.OpenApi.Models;
-using System.Security.Cryptography.Xml;
 
 var builder = WebApplication.CreateBuilder(args);
 

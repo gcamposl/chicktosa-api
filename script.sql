@@ -29,3 +29,13 @@ create table if usuario
 	email varchar,
 	senha varchar
 );
+
+create table pessoa_imagem (
+	id_imagem serial,
+	id_pessoa int not null,
+	imagem_url varchar(150),
+	imagem_base text,
+	primary key (id_imagem),
+	foreign key (id_pessoa)
+		references pessoa (id_pessoa)	
+);
