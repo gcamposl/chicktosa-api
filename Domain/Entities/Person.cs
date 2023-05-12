@@ -13,12 +13,14 @@ namespace Domain.Entities
         public string Name { get; private set; }
         public string Document { get; private set; }
         public string Phone { get; private set; }
-        public ICollection<Plan> Plan { get; set; }
+        public ICollection<Plan> Plan { get; private set; }
+        public ICollection<PersonImage> PersonImages { get; private set; }
 
         public Person(string name, string document, string phone)
         {
             Validation(name, document, phone);
             Plan = new List<Plan>();
+            PersonImages = new List<PersonImage>();
         }
 
         public Person(int id, string name, string document, string phone)
@@ -26,6 +28,7 @@ namespace Domain.Entities
             DomainValidationException.When(id < 0, "Id inválido!");
             Id = id;
             Validation(name, document, phone);
+            PersonImages = new List<PersonImage>();
         }
         private void Validation(string name, string document, string phone)
         {

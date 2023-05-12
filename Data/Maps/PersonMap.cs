@@ -30,6 +30,11 @@ namespace Data.Maps
             builder.HasMany(c => c.Plan)
               .WithOne(p => p.Person)
               .HasForeignKey(c => c.PersonId);
+
+
+            builder.HasMany(x => x.PersonImages)
+                .WithOne(x => x.Person)
+                .HasForeignKey(x => x.PersonId);
         }
     }
 }
