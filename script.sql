@@ -23,14 +23,14 @@ create table if not exists plano (
 	constraint fk_pet_plano foreign key(id_pet) references pet(id_pet)	
 );
 
-create table if usuario
+create table if not exists usuario
 (
 	id_usuario serial,
 	email varchar,
 	senha varchar
 );
 
-create table pessoa_imagem (
+create table if not exists pessoa_imagem (
 	id_imagem serial,
 	id_pessoa int not null,
 	imagem_url varchar(150),
