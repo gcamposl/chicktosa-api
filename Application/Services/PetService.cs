@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.DTOs;
+using Application.DTOs.Pet;
 using Application.DTOs.Validations;
 using Application.Services.Interfaces;
 using AutoMapper;

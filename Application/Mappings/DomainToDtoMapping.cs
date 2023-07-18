@@ -1,6 +1,8 @@
 using AutoMapper;
-using Application.DTOs;
 using Domain.Entities;
+using Application.DTOs.Person;
+using Application.DTOs.Pet;
+using Application.DTOs.Plan;
 
 namespace Application.Mappings
 {

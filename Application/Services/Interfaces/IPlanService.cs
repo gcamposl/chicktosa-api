@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.DTOs;
-using Domain.Entities;
+using Application.DTOs.Plan;
 
 namespace Application.Services.Interfaces
 {

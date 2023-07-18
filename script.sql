@@ -39,3 +39,17 @@ create table if not exists pessoa_imagem (
 	foreign key (id_pessoa)
 		references pessoa (id_pessoa)	
 );
+
+
+insert into usuario (email, senha) values ('teste@teste.com.br', '12345');
+insert into usuario (email, senha) values ('abc@cba.com.br', '55555');
+insert into usuario (email, senha) values ('value@teste.com.br', '4444');
+insert into usuario (email, senha) values ('teste@teste.com.br', '333');
+
+
+insert into pessoa (nome, documento, telefone) values ('teste', 0, 123);
+insert into pessoa (nome, documento, telefone) values ('teste1', 1, 123);
+insert into pessoa (nome, documento, telefone) values ('teste2', 2, 123);
+insert into pessoa (nome, documento, telefone) values ('teste3', 3, 123);
+insert into pessoa (nome, documento, telefone) values ('teste4', 4, 123);
+insert into pessoa (nome, documento, telefone) values ('teste5', 5, 123);

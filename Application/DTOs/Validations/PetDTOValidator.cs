@@ -1,3 +1,4 @@
+using Application.DTOs.Pet;
 using FluentValidation;
 
 namespace Application.DTOs.Validations

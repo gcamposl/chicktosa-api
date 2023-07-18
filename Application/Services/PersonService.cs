@@ -1,14 +1,11 @@
-using System;
-using System.Reflection.Metadata;
-using System.Runtime.CompilerServices;
 using AutoMapper;
 using Application.DTOs;
 using Application.DTOs.Validations;
 using Application.Services.Interfaces;
 using Domain.Entities;
 using Domain.Repositories;
-using FluentValidation.Validators;
 using Domain.FiltersDB;
+using Application.DTOs.Person;
 
 namespace Application.Services
 {
