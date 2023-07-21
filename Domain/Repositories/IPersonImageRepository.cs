@@ -6,7 +6,7 @@ namespace Domain.Repositories
     {
         Task<PersonImage?> GetByIdAsync(int id);
         Task<PersonImage> CreateAsync(PersonImage personImage);
-        Task<ICollection<PersonImage>> GetByPersonIdAsync(int id);
-        Task EditAsync(PersonImage personImage);
+        Task<ICollection<PersonImage>> GetByPersonIdAsync(int personId);
+        Task UpdateAsync(PersonImage personImage);
     }
 }

@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using Data.Context;
 using Domain.Entities;
 using Domain.FiltersDB;
@@ -6,48 +8,35 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositories
 {
-    public class PersonImageRepository : IPersonRepository
+    public class PersonImageRepository : IPersonImageRepository
     {
         private readonly ApplicationDbContext _db;
-        private PersonImageRepository(ApplicationDbContext db)
+        public PersonImageRepository(ApplicationDbContext db)
         {
             _db = db;
         }
-        public async Task<Person> CreateAsync(Person person)
+
+        public async Task<PersonImage> CreateAsync(PersonImage personImage)
         {
-            _db.Add(person);
+            _db.Add(personImage);
             await _db.SaveChangesAsync();
-            return person;
+            return personImage;
         }
 
-        public Task DeleteAsync(Person person)
+        public async Task UpdateAsync(PersonImage personImage)
         {
-            throw new NotImplementedException();
+            _db.Update(personImage);
+            await _db.SaveChangesAsync();
         }
 
-        public Task<Person> GetByIdAsync(int id)
+        public async Task<PersonImage?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _db.PersonImages.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<int> GetIdByDocumentAsync(string document)
+        public async Task<ICollection<PersonImage>> GetByPersonIdAsync(int personId)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<PagedBaseReponse<Person>> GetPagedAsync(PersonFilterDb request)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ICollection<Person>> GetPersonAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(Person person)
-        {
-            throw new NotImplementedException();
+            return await _db.PersonImages.AsNoTracking().Where(x => x.PersonId == personId).ToListAsync();
         }
     }
 }
