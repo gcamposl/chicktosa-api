@@ -31,7 +31,7 @@ namespace IoC
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITokenGenerator, TokenGenerator>();
             services.AddScoped<IUserRepository, UserRepository>();
-
+            services.AddScoped<IPersonImageRepository, PersonImageRepository>();
             return services;
         }
 
@@ -44,6 +44,7 @@ namespace IoC
             services.AddScoped<IPlanService, PlanService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IPersonImageService, PersonImageService>();
 
             return services;
         }
