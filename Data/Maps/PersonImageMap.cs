@@ -20,7 +20,7 @@ namespace Data.Maps
                 .UseIdentityColumn();
 
             builder.Property(x => x.PersonId)
-                .HasColumnName("id_persoa");
+                .HasColumnName("id_pessoa");
 
             builder.Property(x => x.ImageBase)
                 .HasColumnName("imagem_base");

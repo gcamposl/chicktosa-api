@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
-    [Route("api/{controller}")]
+    [Route("api/[controller]")]
     [ApiController]
     public class PersonImageController : ControllerBase
     {
@@ -20,7 +20,7 @@ namespace Api.Controllers
         {
             var result = await _personImageService.CreateImageBase64Async(personImageDTO);
             if (result.IsSuccess)
-                return Ok();
+                return Ok(result);
 
             return BadRequest(result);
         }
