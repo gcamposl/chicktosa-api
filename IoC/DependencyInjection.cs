@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Domain.Authentication;
 using Data.Authentication;
+using Domain.Integrations;
+using Data.Integrations;
 
 namespace IoC
 {
@@ -32,6 +34,8 @@ namespace IoC
             services.AddScoped<ITokenGenerator, TokenGenerator>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPersonImageRepository, PersonImageRepository>();
+            services.AddScoped<ISavePersonImage, SavePersonImage>();
+
             return services;
         }
 
