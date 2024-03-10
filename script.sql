@@ -27,7 +27,9 @@ create table if not exists usuario
 (
 	id_usuario serial,
 	email varchar,
-	senha varchar
+	senha varchar,
+
+	primary key (id_usuario)
 );
 
 create table if not exists pessoa_imagem (
@@ -40,6 +42,26 @@ create table if not exists pessoa_imagem (
 		references pessoa (id_pessoa)	
 );
 
+
+create table permissao (
+	id_permissao serial,
+	nome_visual varchar(150),
+	nome_permissao varchar(150),
+	primary key (id_permissao)
+);
+
+
+create table permissao_usuario (
+	id_permissao_usuario serial,
+	id_usuario int,
+	id_permissao int,
+	
+	primary key (id_permissao_usuario),
+	foreign key (id_usuario)
+		references usuario (id_usuario),
+	foreign key (id_permissao)
+		references permissao (id_permissao)
+);
 
 insert into usuario (email, senha) values ('teste@teste.com.br', '12345');
 insert into usuario (email, senha) values ('abc@cba.com.br', '55555');
