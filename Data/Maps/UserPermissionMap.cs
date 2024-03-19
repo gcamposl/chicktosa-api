@@ -14,8 +14,10 @@ namespace Data.Maps
             builder.Property(p => p.Id)
                 .HasColumnName("id_permissao_usuario")
                 .UseIdentityColumn();
+
             builder.Property(p => p.UserId)
                 .HasColumnName("id_usuario");
+
             builder.Property(p => p.PermissionId)
                 .HasColumnName("id_permissao");
 

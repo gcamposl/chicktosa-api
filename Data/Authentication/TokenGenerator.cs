@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.SymbolStore;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using Domain.Authentication;
 using Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
@@ -17,10 +11,12 @@ namespace Data.Authentication
     {
         public dynamic Generator(User user)
         {
+            var permission = string.Join(",", user.UserPermissions.Select(x => x.Permission?.PermissionName));
             var claims = new List<Claim>
             {
                 new Claim("Email", user.Email),
-                new Claim("Id", user.Id.ToString())
+                new Claim("Id", user.Id.ToString()),
+                new Claim("Permissoes", permission)
             };
 
             var expires = DateTime.Now.AddDays(1);

@@ -13,8 +13,10 @@ namespace Data.Maps
 
             builder.Property(u => u.Id)
                 .HasColumnName("id_usuario");
+
             builder.Property(u => u.Email)
                 .HasColumnName("email");
+
             builder.Property(u => u.Password)
                 .HasColumnName("senha");
 
