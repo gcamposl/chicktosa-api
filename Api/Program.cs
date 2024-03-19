@@ -52,7 +52,7 @@ builder.Services.AddService(builder.Configuration);
 builder.Services.AddMvc().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-}); // retorna null aonde nao tiver valor no payload da enviado pela api
+}); // retorna null aonde nao tiver valor no payload enviado pela api
 
 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("projetoDotNetCore6"));
 builder.Services.AddAuthentication(authOptions =>

@@ -43,7 +43,7 @@ create table if not exists pessoa_imagem (
 );
 
 
-create table permissao (
+create table if not exists permissao (
 	id_permissao serial,
 	nome_visual varchar(150),
 	nome_permissao varchar(150),
@@ -51,7 +51,7 @@ create table permissao (
 );
 
 
-create table permissao_usuario (
+create table if not exists permissao_usuario (
 	id_permissao_usuario serial,
 	id_usuario int,
 	id_permissao int,
