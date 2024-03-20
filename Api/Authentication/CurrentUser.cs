@@ -23,7 +23,6 @@ namespace Api.Authentication
 
             if (claims.Any(x => x.Type == "Permissoes"))
                 Permission = claims.First(x => x.Type == "Permissoes").Value;
-
         }
     }
 }
