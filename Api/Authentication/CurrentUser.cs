@@ -12,6 +12,18 @@ namespace Api.Authentication
         {
             var httpContext = httpContextAccessor.HttpContext;
             var claims = httpContext.User.Claims;
+            if (claims.Any(x => x.Type == "Id"))
+            {
+                var id = Convert.ToInt32(claims.First(x => x.Type == "Id").Value);
+                Id = id;
+            }
+
+            if (claims.Any(x => x.Type == "Email"))
+                Email = claims.First(x => x.Type == "Email").Value;
+
+            if (claims.Any(x => x.Type == "Permissoes"))
+                Permission = claims.First(x => x.Type == "Permissoes").Value;
+
         }
     }
 }
